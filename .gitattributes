@@ -1,3 +1,5 @@
 ffmpeg-darwin-blint.tar.gz filter=lfs diff=lfs merge=lfs -text
 dotnet-sonarr/blint-reports.zip filter=lfs diff=lfs merge=lfs -text
 dotnet-sonarr/dosai.tar.gz filter=lfs diff=lfs merge=lfs -text
+dotnet-radarr/blint-reports.zip filter=lfs diff=lfs merge=lfs -text
+dotnet-radarr/dosai.tar.gz filter=lfs diff=lfs merge=lfs -text

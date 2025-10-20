@@ -1,6 +1,39 @@
 # Introduction
 
+This document discusses the steps involved in computing and analysing the slices for ffmpeg using atom, blint, and dosai.
 
+## Pre-requisites
+
+- Java >= 21
+- Python >= 3.10
+- Install [atom >= 2.4.2](https://github.com/AppThreat/atom/releases/tag/v2.4.2)
+- Install [blint >= 3.0.1](https://github.com/owasp-dep-scan/blint?tab=readme-ov-file#installation)
+- Install [dosai >= 2.0.3](https://github.com/owasp-dep-scan/dosai/releases/tag/v2.0.3) - optional for dotnet analysis
+
+## Slices creation
+
+### Download ffmpeg source
+
+```
+git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg --depth=1
+```
+
+### Generate or download atom
+
+To generate atom for ffmpeg from scratch:
+
+```shell
+atom.sh reachables -l c -o c-app.atom -s reachables.slices.json <ffmpeg directory>
+```
+
+Alternatively, download from [HuggingFace](https://huggingface.co/datasets/AppThreat/ukaina/tree/main/c/ffmpeg).
+
+### Generate blint metadata
+
+Compile ffmpeg.
+
+```
+```
 
 ## blint metadata analysis
 
