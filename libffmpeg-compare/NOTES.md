@@ -9,6 +9,7 @@ This document discusses the steps involved in computing and analysing the slices
 - Install [atom >= 2.4.2](https://github.com/AppThreat/atom/releases/tag/v2.4.2)
 - Install [blint >= 3.0.1](https://github.com/owasp-dep-scan/blint?tab=readme-ov-file#installation)
 - Install [dosai >= 2.0.3](https://github.com/owasp-dep-scan/dosai/releases/tag/v2.0.3) - optional for dotnet analysis
+- LLVM@18
 
 ## Slices creation
 
@@ -26,6 +27,8 @@ To generate atom for ffmpeg from scratch:
 atom.sh reachables -l c -o c-app.atom -s reachables.slices.json <ffmpeg directory>
 ```
 
+This step would take a while and needs > 40GB memory!
+
 Alternatively, download from [HuggingFace](https://huggingface.co/datasets/AppThreat/ukaina/tree/main/c/ffmpeg).
 
 ### Generate blint metadata
@@ -33,29 +36,58 @@ Alternatively, download from [HuggingFace](https://huggingface.co/datasets/AppTh
 Compile ffmpeg.
 
 ```
+cd ffmpeg
+./configure
+make
+```
+
+```
+pip install blint[extended]
+blint -i <ffmpeg directory> -o <reports directory> --disassemble .
+```
+
+Use the container image when faced with llvm or nyxstone related issues.
+
+```
+nerdctl pull ghcr.io/owasp-dep-scan/blint:latest
+# docker pull ghcr.io/owasp-dep-scan/blint:latest
 ```
 
 ## blint metadata analysis
 
-`av_bprint_append_data`
+Let's focus on a method: `av_bprint_append_data`
+
+### assembly logic
 
 Prepare for copy operation
 
 load base address to x9
 
+```
 ldr x9, [x19]
+```
 
 Add value in register x9 to the value in w8.
 
+```
 add x0, x9, w8, uxtw
+```
 
 Compare and branch if zero
 
+```
 cbz w9, #24
+```
 
-Calls function to append data into the buffer at the calculated address
+Calls function to append data into the buffer at the calculated address:
 
+```
 bl #977392
+```
+
+NOTE: Help improve [blint](https://github.com/owasp-dep-scan/blint/pulls) to resolve and track this call under [direct_calls](https://github.com/owasp-dep-scan/blint/blob/main/docs/DISASSEMBLE.md)!
+
+From ffmpeg-metadata.json
 
 ```
 "0x100e5b9a4::_av_bprint_append_data": {
@@ -410,6 +442,11 @@ bl #977392
 ```
 
 ## Interactive source analysis with chennai
+
+Download chennai [distribution](https://github.com/AppThreat/chen/releases/tag/v2.5.5) or container [image](https://github.com/AppThreat/chen?tab=readme-ov-file#interactive-console).
+
+Set the environment variable `SCALAPY_PYTHON_LIBRARY` for local installations as per [README](https://github.com/AppThreat/chen?tab=readme-ov-file#commands-throw-errors-in-chennai-console).
+
 
 ```
 ❯ ./chennai -J-Xms16g -J-Xmx40g
