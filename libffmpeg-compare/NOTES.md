@@ -1,3 +1,9 @@
+# Introduction
+
+
+
+## blint metadata analysis
+
 `av_bprint_append_data`
 
 Prepare for copy operation
@@ -370,6 +376,38 @@ bl #977392
 }
 ```
 
+## Interactive source analysis with chennai
+
+```
+❯ ./chennai -J-Xms16g -J-Xmx40g
+ _                          _   _   _   _  __
+/  |_   _  ._  ._   _. o   |_  / \ / \ / \  / |_|_
+\_ | | (/_ | | | | (_| |   |_) \_/ \_/ \_/ /    |
+
+Version: 2.5.1
+
+
+chennai> importAtom("/Users/prabhu/sandbox/ffmpeg/c-app.atom")
+         Atom Summary
+┏━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┓
+┃ Node Type        ┃ Count   ┃
+┡━━━━━━━━━━━━━━━━━━╇━━━━━━━━━┩
+│ Files            │ 4271    │
+│ Methods          │ 65085   │
+│ Annotations      │ 0       │
+│ Imports          │ 25918   │
+│ Literals         │ 1884737 │
+│ Config Files     │ 1       │
+│ Validation tags  │ 6262    │
+│ Unique packages  │ 0       │
+│ Framework tags   │ 54      │
+│ Framework input  │ 54      │
+│ Framework output │ 0       │
+│ Crypto tags      │ 0       │
+│ Overlays         │ 5       │
+└──────────────────┴─────────┘
+```
+
 ```
 chennai> atom.method("av_bprint_append_data").call.methodFullName.toSet
 val res0: Set[String] = HashSet(
@@ -540,3 +578,24 @@ val res2: scala.collection.mutable.ListBuffer[String] = ListBuffer(
   "|    |    |    |    |    |    |    |    |    |    |    |    +--- libavutil/macros.h:49:49:FFMIN:0~~libavutil/macros.h#49"
 )
 ```
+
+```
+chennai> atom.method("realloc").callIn.argument.df(atom.method("av_bprint_append_data").parameter).t
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                   ┃ Method                                            ┃ Parameter              ┃ Tracked                                          ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavutil/bprint.c#148                                     │ av_bprint_append_data                             │ buf                    │ av_bprint_append_data                            │
+│                                                            │                                                   │                        │                                                  │
+│ libavutil/bprint.c#36                                      │ av_bprint_alloc                                   │ buf                    │ av_bprint_alloc                                  │
+│                                                            │                                                   │                        │                                                  │
+│ libavutil/bprint.h#218                                     │ av_bprint_is_complete                             │ buf                    │ av_bprint_is_complete                            │
+│                                                            │                                                   │                        │                                                  │
+│ libavutil/mem.c#155                                        │ av_realloc                                        │ size                   │ av_realloc                                       │
+│                                                            │                                                   │                        │                                                  │
+│ /usr/include/stdlib.h#683                                  │ realloc                                           │ __size                 │ realloc                                          │
+│                                                            │                                                   │                        │                                                  │
+└────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────┴────────────────────────┴──────────────────────────────────────────────────┘
+                                                                                    Source: AVBPrint *buf
+                                                                                       Sink: av_realloc
+```
+
