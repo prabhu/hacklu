@@ -106,8 +106,8 @@ From ffmpeg-metadata.json
         "ret_count": 1,
         "jump_count": 0,
         "simd_fpu_count": 0,
-        "unique_regs_read_count": 19,
-        "unique_regs_written_count": 12
+        "unique_regs_read_count": 20,
+        "unique_regs_written_count": 23
     },
     "direct_calls": [],
     "has_indirect_call": false,
@@ -117,65 +117,107 @@ From ffmpeg-metadata.json
     "has_gpu_call": false,
     "has_loop": false,
     "regs_read": [
-        "w2",
-        "x30",
-        "w25",
-        "w8",
-        "x28",
-        "x1",
-        "w9",
-        "x2",
-        "x0",
-        "x10",
-        "w22",
-        "x21",
-        "w28",
-        "x9",
+        "w24",
+        "x19",
         "w20",
         "wzr",
-        "x19",
-        "w24",
-        "x24"
+        "sp",
+        "x10",
+        "w9",
+        "x30",
+        "x21",
+        "x2",
+        "x28",
+        "w8",
+        "w22",
+        "x9",
+        "x24",
+        "x0",
+        "w28",
+        "x1",
+        "w2",
+        "w25"
     ],
     "regs_written": [
-        "w8",
-        "x1",
-        "x22",
-        "w9",
-        "x8",
-        "x10",
+        "w24",
         "x19",
-        "x20",
+        "x23",
+        "x1",
+        "x26",
+        "x10",
+        "w9",
         "x30",
-        "x0",
+        "x20",
         "x21",
-        "x9"
+        "x8",
+        "x27",
+        "x28",
+        "w8",
+        "x9",
+        "x25",
+        "x24",
+        "x29",
+        "x0",
+        "w28",
+        "x22",
+        "w2",
+        "w25"
     ],
     "used_simd_reg_types": [],
     "instructions_with_registers": [
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "sp"
+            ],
+            "regs_written": [
+                "x28",
+                "x27"
+            ]
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "sp"
+            ],
+            "regs_written": [
+                "x26",
+                "x25"
+            ]
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "sp"
+            ],
+            "regs_written": [
+                "x23",
+                "x24"
+            ]
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "sp"
+            ],
+            "regs_written": [
+                "x21",
+                "x22"
+            ]
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "sp"
+            ],
+            "regs_written": [
+                "x20",
+                "x19"
+            ]
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "sp"
+            ],
+            "regs_written": [
+                "x30",
+                "x29"
+            ]
         },
         {
             "regs_read": [
@@ -202,8 +244,13 @@ From ffmpeg-metadata.json
             ]
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "x0"
+            ],
+            "regs_written": [
+                "w24",
+                "w28"
+            ]
         },
         {
             "regs_read": [
@@ -215,8 +262,13 @@ From ffmpeg-metadata.json
             ]
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "w8",
+                "wzr"
+            ],
+            "regs_written": [
+                "w25"
+            ]
         },
         {
             "regs_read": [
@@ -247,8 +299,8 @@ From ffmpeg-metadata.json
         },
         {
             "regs_read": [
-                "w22",
-                "w24"
+                "w24",
+                "w22"
             ],
             "regs_written": []
         },
@@ -272,8 +324,13 @@ From ffmpeg-metadata.json
             "regs_written": []
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "w9",
+                "w20"
+            ],
+            "regs_written": [
+                "w2"
+            ]
         },
         {
             "regs_read": [
@@ -322,8 +379,8 @@ From ffmpeg-metadata.json
         },
         {
             "regs_read": [
-                "w9",
-                "w8"
+                "w8",
+                "w9"
             ],
             "regs_written": [
                 "w9"
@@ -337,13 +394,18 @@ From ffmpeg-metadata.json
             "regs_written": []
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "w9",
+                "w20"
+            ],
+            "regs_written": [
+                "w9"
+            ]
         },
         {
             "regs_read": [
-                "w9",
-                "w8"
+                "w8",
+                "w9"
             ],
             "regs_written": [
                 "w8"
@@ -394,41 +456,74 @@ From ffmpeg-metadata.json
             "regs_written": []
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "w9",
+                "w8"
+            ],
+            "regs_written": [
+                "w8"
+            ]
         },
         {
             "regs_read": [
                 "wzr",
-                "w8",
                 "x10"
             ],
             "regs_written": []
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "sp"
+            ],
+            "regs_written": [
+                "x30",
+                "x29"
+            ]
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "sp"
+            ],
+            "regs_written": [
+                "x20",
+                "x19"
+            ]
         },
         {
-        {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "sp"
+            ],
+            "regs_written": [
+                "x21",
+                "x22"
+            ]
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "sp"
+            ],
+            "regs_written": [
+                "x23",
+                "x24"
+            ]
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "sp"
+            ],
+            "regs_written": [
+                "x26",
+                "x25"
+            ]
         },
         {
-            "regs_read": [],
-            "regs_written": []
+            "regs_read": [
+                "sp"
+            ],
+            "regs_written": [
+                "x28",
+                "x27"
+            ]
         },
         {
             "regs_read": [
@@ -437,7 +532,8 @@ From ffmpeg-metadata.json
             "regs_written": []
         }
     ],
-    "function_type": ""
+    "function_type": "",
+    "proprietary_instructions": []
 }
 ```
 
