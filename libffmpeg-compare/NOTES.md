@@ -104,7 +104,7 @@ From ffmpeg-metadata.json (aarch64-apple)
         "shift_count": 0,
         "arith_count": 5,
         "ret_count": 1,
-        "jump_count": 1, // <----
+        "jump_count": 0,
         "simd_fpu_count": 0,
         "unique_regs_read_count": 20,
         "unique_regs_written_count": 23
@@ -117,420 +117,420 @@ From ffmpeg-metadata.json (aarch64-apple)
     "has_gpu_call": false,
     "has_loop": false,
     "regs_read": [
-        "x10",
-        "x28",
-        "x19",
-        "w2",
-        "x30",
-        "w8",
-        "w25",
-        "x0",
-        "w28",
-        "x1",
-        "w22",
-        "x21",
-        "x9",
-        "w9",
-        "x24",
-        "w24",
-        "sp",
-        "w20",
-        "x2",
-        "wzr"
-    ],
-    "regs_written": [
-        "x8",
-        "x10",
-        "x25",
-        "x27",
-        "x29",
-        "x28",
-        "x19",
-        "x30",
-        "w2",
-        "w8",
-        "x20",
-        "w25",
-        "x0",
-        "w28",
-        "x1",
-        "x23",
-        "x21",
-        "x22",
-        "x9",
-        "w9",
-        "x24",
-        "w24",
-        "x26"
-    ],
-    "used_simd_reg_types": [],
-    "instructions_with_registers": [
-        {
-            "regs_read": [
-                "sp"
-            ],
-            "regs_written": [
-                "x27",
-                "x28"
-            ]
-        },
-        {
-            "regs_read": [
-                "sp"
-            ],
-            "regs_written": [
-                "x25",
-                "x26"
-            ]
-        },
-        {
-            "regs_read": [
-                "sp"
-            ],
-            "regs_written": [
-                "x24",
-                "x23"
-            ]
-        },
-        {
-            "regs_read": [
-                "sp"
-            ],
-            "regs_written": [
-                "x21",
-                "x22"
-            ]
-        },
-        {
-            "regs_read": [
-                "sp"
-            ],
-            "regs_written": [
-                "x19",
-                "x20"
-            ]
-        },
-        {
-            "regs_read": [
-                "sp"
-            ],
-            "regs_written": [
-                "x30",
-                "x29"
-            ]
-        },
-        {
-            "regs_read": [
-                "x2"
-            ],
-            "regs_written": [
-                "x20"
-            ]
-        },
-        {
-            "regs_read": [
-                "x1"
-            ],
-            "regs_written": [
-                "x21"
-            ]
-        },
-        {
-            "regs_read": [
-                "x0"
-            ],
-            "regs_written": [
-                "x19"
-            ]
-        },
-        {
-            "regs_read": [
-                "x0"
-            ],
-            "regs_written": [
-                "w24",
-                "w28"
-            ]
-        },
-        {
-            "regs_read": [
-                "w28",
-                "w24"
-            ],
-            "regs_written": [
-                "w8"
-            ]
-        },
-        {
-            "regs_read": [
-                "w8",
-                "wzr"
-            ],
-            "regs_written": [
-                "w25"
-            ]
-        },
-        {
-            "regs_read": [
-                "w2",
-                "w25"
-            ],
-            "regs_written": []
-        },
-        {
-            "regs_read": [],
-            "regs_written": []
-        },
-        {
-            "regs_read": [
-                "x24"
-            ],
-            "regs_written": [
-                "x8"
-            ]
-        },
-        {
-            "regs_read": [
-                "x28"
-            ],
-            "regs_written": [
-                "x22"
-            ]
-        },
-        {
-            "regs_read": [
-                "w22",
-                "w24"
-            ],
-            "regs_written": []
-        },
-        {
-            "regs_read": [],
-            "regs_written": []
-        },
-        {
-            "regs_read": [
-                "w25"
-            ],
-            "regs_written": [
-                "w9"
-            ]
-        },
-        {
-            "regs_read": [
-                "w9",
-                "w20"
-            ],
-            "regs_written": []
-        },
-        {
-            "regs_read": [
-                "w9",
-                "w20"
-            ],
-            "regs_written": [
-                "w2"
-            ]
-        },
-        {
-            "regs_read": [
-                "x19"
-            ],
-            "regs_written": [
-                "x9"
-            ]
-        },
-        {
-            "regs_read": [
-                "x9",
-                "w8"
-            ],
-            "regs_written": [
-                "x0"
-            ]
-        },
-        {
-            "regs_read": [
-                "x21"
-            ],
-            "regs_written": [
-                "x1"
-            ]
-        },
-        {
-            "regs_read": [],
-            "regs_written": [
-                "x30"
-            ]
-        },
-        {
-            "regs_read": [
-                "x19"
-            ],
-            "regs_written": [
-                "w8"
-            ]
-        },
-        {
-            "regs_read": [],
-            "regs_written": [
-                "w9"
-            ]
-        },
-        {
-            "regs_read": [
-                "w8",
-                "w9"
-            ],
-            "regs_written": [
-                "w9"
-            ]
-        },
-        {
-            "regs_read": [
-                "w9",
-                "w20"
-            ],
-            "regs_written": []
-        },
-        {
-            "regs_read": [
-                "w9",
-                "w20"
-            ],
-            "regs_written": [
-                "w9"
-            ]
-        },
-        {
-            "regs_read": [
-                "w8",
-                "w9"
-            ],
-            "regs_written": [
-                "w8"
-            ]
-        },
-        {
-            "regs_read": [
-                "w8",
-                "x19"
-            ],
-            "regs_written": []
-        },
-        {
-            "regs_read": [
-                "x19"
-            ],
-            "regs_written": [
-                "w9"
-            ]
-        },
-        {
-            "regs_read": [
-                "w9"
-            ],
-            "regs_written": []
-        },
-        {
-            "regs_read": [
-                "x19"
-            ],
-            "regs_written": [
-                "x10"
-            ]
-        },
-        {
-            "regs_read": [
-                "w9"
-            ],
-            "regs_written": [
-                "w9"
-            ]
-        },
-        {
-            "regs_read": [
-                "w8",
-                "w9"
-            ],
-            "regs_written": []
-        },
-        {
-            "regs_read": [
-                "w8",
-                "w9"
-            ],
-            "regs_written": [
-                "w8"
-            ]
-        },
-        {
-            "regs_read": [
-                "x10",
-                "wzr"
-            ],
-            "regs_written": []
-        },
-        {
-            "regs_read": [
-                "sp"
-            ],
-            "regs_written": [
-                "x30",
-                "x29"
-            ]
-        },
-        {
-            "regs_read": [
-                "sp"
-            ],
-            "regs_written": [
-                "x19",
-                "x20"
-            ]
-        },
-        {
-            "regs_read": [
-                "sp"
-            ],
-            "regs_written": [
-                "x21",
-                "x22"
-            ]
-        },
-        {
-            "regs_read": [
-                "sp"
-            ],
-            "regs_written": [
-                "x24",
-                "x23"
-            ]
-        },
-        {
-            "regs_read": [
-                "sp"
-            ],
-            "regs_written": [
-                "x25",
-                "x26"
-            ]
-        },
-        {
-            "regs_read": [
-                "sp"
-            ],
-            "regs_written": [
-                "x27",
-                "x28"
-            ]
-        },
-        {
-            "regs_read": [
-                "x30"
-            ],
-            "regs_written": []
-        }
+      "sp",
+      "w2",
+      "w20",
+      "w22",
+      "w24",
+      "w25",
+      "w28",
+      "w8",
+      "w9",
+      "wzr",
+      "x0",
+      "x1",
+      "x10",
+      "x19",
+      "x2",
+      "x21",
+      "x24",
+      "x28",
+      "x30",
+      "x9"
+  ],
+  "regs_written": [
+      "w2",
+      "w24",
+      "w25",
+      "w28",
+      "w8",
+      "w9",
+      "x0",
+      "x1",
+      "x10",
+      "x19",
+      "x20",
+      "x21",
+      "x22",
+      "x23",
+      "x24",
+      "x25",
+      "x26",
+      "x27",
+      "x28",
+      "x29",
+      "x30",
+      "x8",
+      "x9"
+  ],
+  "used_simd_reg_types": [],
+  "instructions_with_registers": [
+      {
+          "regs_read": [
+              "sp"
+          ],
+          "regs_written": [
+              "x27",
+              "x28"
+          ]
+      },
+      {
+          "regs_read": [
+              "sp"
+          ],
+          "regs_written": [
+              "x25",
+              "x26"
+          ]
+      },
+      {
+          "regs_read": [
+              "sp"
+          ],
+          "regs_written": [
+              "x23",
+              "x24"
+          ]
+      },
+      {
+          "regs_read": [
+              "sp"
+          ],
+          "regs_written": [
+              "x21",
+              "x22"
+          ]
+      },
+      {
+          "regs_read": [
+              "sp"
+          ],
+          "regs_written": [
+              "x19",
+              "x20"
+          ]
+      },
+      {
+          "regs_read": [
+              "sp"
+          ],
+          "regs_written": [
+              "x29",
+              "x30"
+          ]
+      },
+      {
+          "regs_read": [
+              "x2"
+          ],
+          "regs_written": [
+              "x20"
+          ]
+      },
+      {
+          "regs_read": [
+              "x1"
+          ],
+          "regs_written": [
+              "x21"
+          ]
+      },
+      {
+          "regs_read": [
+              "x0"
+          ],
+          "regs_written": [
+              "x19"
+          ]
+      },
+      {
+          "regs_read": [
+              "x0"
+          ],
+          "regs_written": [
+              "w24",
+              "w28"
+          ]
+      },
+      {
+          "regs_read": [
+              "w24",
+              "w28"
+          ],
+          "regs_written": [
+              "w8"
+          ]
+      },
+      {
+          "regs_read": [
+              "w8",
+              "wzr"
+          ],
+          "regs_written": [
+              "w25"
+          ]
+      },
+      {
+          "regs_read": [
+              "w2",
+              "w25"
+          ],
+          "regs_written": []
+      },
+      {
+          "regs_read": [],
+          "regs_written": []
+      },
+      {
+          "regs_read": [
+              "x24"
+          ],
+          "regs_written": [
+              "x8"
+          ]
+      },
+      {
+          "regs_read": [
+              "x28"
+          ],
+          "regs_written": [
+              "x22"
+          ]
+      },
+      {
+          "regs_read": [
+              "w22",
+              "w24"
+          ],
+          "regs_written": []
+      },
+      {
+          "regs_read": [],
+          "regs_written": []
+      },
+      {
+          "regs_read": [
+              "w25"
+          ],
+          "regs_written": [
+              "w9"
+          ]
+      },
+      {
+          "regs_read": [
+              "w20",
+              "w9"
+          ],
+          "regs_written": []
+      },
+      {
+          "regs_read": [
+              "w20",
+              "w9"
+          ],
+          "regs_written": [
+              "w2"
+          ]
+      },
+      {
+          "regs_read": [
+              "x19"
+          ],
+          "regs_written": [
+              "x9"
+          ]
+      },
+      {
+          "regs_read": [
+              "w8",
+              "x9"
+          ],
+          "regs_written": [
+              "x0"
+          ]
+      },
+      {
+          "regs_read": [
+              "x21"
+          ],
+          "regs_written": [
+              "x1"
+          ]
+      },
+      {
+          "regs_read": [],
+          "regs_written": [
+              "x30"
+          ]
+      },
+      {
+          "regs_read": [
+              "x19"
+          ],
+          "regs_written": [
+              "w8"
+          ]
+      },
+      {
+          "regs_read": [],
+          "regs_written": [
+              "w9"
+          ]
+      },
+      {
+          "regs_read": [
+              "w8",
+              "w9"
+          ],
+          "regs_written": [
+              "w9"
+          ]
+      },
+      {
+          "regs_read": [
+              "w20",
+              "w9"
+          ],
+          "regs_written": []
+      },
+      {
+          "regs_read": [
+              "w20",
+              "w9"
+          ],
+          "regs_written": [
+              "w9"
+          ]
+      },
+      {
+          "regs_read": [
+              "w8",
+              "w9"
+          ],
+          "regs_written": [
+              "w8"
+          ]
+      },
+      {
+          "regs_read": [
+              "w8",
+              "x19"
+          ],
+          "regs_written": []
+      },
+      {
+          "regs_read": [
+              "x19"
+          ],
+          "regs_written": [
+              "w9"
+          ]
+      },
+      {
+          "regs_read": [
+              "w9"
+          ],
+          "regs_written": []
+      },
+      {
+          "regs_read": [
+              "x19"
+          ],
+          "regs_written": [
+              "x10"
+          ]
+      },
+      {
+          "regs_read": [
+              "w9"
+          ],
+          "regs_written": [
+              "w9"
+          ]
+      },
+      {
+          "regs_read": [
+              "w8",
+              "w9"
+          ],
+          "regs_written": []
+      },
+      {
+          "regs_read": [
+              "w8",
+              "w9"
+          ],
+          "regs_written": [
+              "w8"
+          ]
+      },
+      {
+          "regs_read": [
+              "wzr",
+              "x10"
+          ],
+          "regs_written": []
+      },
+      {
+          "regs_read": [
+              "sp"
+          ],
+          "regs_written": [
+              "x29",
+              "x30"
+          ]
+      },
+      {
+          "regs_read": [
+              "sp"
+          ],
+          "regs_written": [
+              "x19",
+              "x20"
+          ]
+      },
+      {
+          "regs_read": [
+              "sp"
+          ],
+          "regs_written": [
+              "x21",
+              "x22"
+          ]
+      },
+      {
+          "regs_read": [
+              "sp"
+          ],
+          "regs_written": [
+              "x23",
+              "x24"
+          ]
+      },
+      {
+          "regs_read": [
+              "sp"
+          ],
+          "regs_written": [
+              "x25",
+              "x26"
+          ]
+      },
+      {
+          "regs_read": [
+              "sp"
+          ],
+          "regs_written": [
+              "x27",
+              "x28"
+          ]
+      },
+      {
+          "regs_read": [
+              "x30"
+          ],
+          "regs_written": []
+      }
     ],
     "function_type": "Has_Conditional_Jumps", // <----
     "proprietary_instructions": [],
