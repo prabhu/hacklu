@@ -634,7 +634,6 @@ Download chennai [distribution](https://github.com/AppThreat/chen/releases/tag/v
 
 Set the environment variable `SCALAPY_PYTHON_LIBRARY` for local installations as per [README](https://github.com/AppThreat/chen?tab=readme-ov-file#commands-throw-errors-in-chennai-console).
 
-
 ```
 ❯ ./chennai -J-Xms16g -J-Xmx40g
  _                          _   _   _   _  __
@@ -856,3 +855,63 @@ chennai> atom.method("realloc").callIn.argument.df(atom.method("av_bprint_append
                                                                                        Sink: av_realloc
 ```
 
+```
+chennai> atom.method("cleanup.*").callIn.argument.isIdentifier.df(atom.method(".*decode.*").parameter).t
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                    ┃ Method                                            ┃ Parameter          ┃ Tracked                                         ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ fftools/ffplay.c#578                                        │ decoder_decode_frame                              │ frame              │ decoder_decode_frame                            │
+│                                                             │                                                   │                    │                                                 │
+│ libavutil/samplefmt.c#51                                    │ av_get_sample_fmt_name                            │ sample_fmt         │ av_get_sample_fmt_name                          │
+│                                                             │                                                   │                    │                                                 │
+│ fftools/ffplay.c#408                                        │ cmp_audio_fmts                                    │ fmt2               │ cmp_audio_fmts                                  │
+│                                                             │                                                   │                    │                                                 │
+│ libavutil/frame.c#523                                       │ av_frame_move_ref                                 │ src                │ av_frame_move_ref                               │
+│                                                             │                                                   │                    │                                                 │
+│ libavfilter/buffersink.h#78                                 │ av_buffersink_get_frame_flags                     │ frame              │ av_buffersink_get_frame_flags                   │
+│                                                             │                                                   │                    │                                                 │
+│ libavfilter/buffersrc.h#189                                 │ av_buffersrc_add_frame                            │ frame              │ av_buffersrc_add_frame                          │
+│                                                             │                                                   │                    │                                                 │
+│ fftools/ffplay.c#2015                                       │ configure_audio_filters                           │ is                 │ configure_audio_filters                         │
+│                                                             │                                                   │                    │                                                 │
+│ libavfilter/avfilter.h#735                                  │ avfilter_graph_free                               │ graph              │ avfilter_graph_free                             │
+│                                                             │                                                   │                    │                                                 │
+│ libavutil/opt.h#869                                         │ av_opt_set                                        │ obj                │ av_opt_set                                      │
+│                                                             │                                                   │                    │                                                 │
+│ libavfilter/avfilter.h#705                                  │ avfilter_graph_create_filter                      │ graph_ctx          │ avfilter_graph_create_filter                    │
+│                                                             │                                                   │                    │                                                 │
+│ libavfilter/avfiltergraph.c#167                             │ avfilter_graph_alloc_filter                       │ graph              │ avfilter_graph_alloc_filter                     │
+│                                                             │                                                   │                    │                                                 │
+│ libavfilter/avfilter_internal.h#150                         │ fffiltergraph                                     │ graph              │ fffiltergraph                                   │
+│                                                             │                                                   │                    │                                                 │
+│ fftools/ffmpeg_filter.c#1921                                │ configure_filtergraph                             │ fg                 │ configure_filtergraph                           │
+│                                                             │                                                   │                    │                                                 │
+│ fftools/ffmpeg_filter.c#73                                  │ fgp_from_fg                                       │ fg                 │ fgp_from_fg                                     │
+│                                                             │                                                   │                    │                                                 │
+│ fftools/ffmpeg_filter.c#2158                                │ filtergraph_is_simple                             │ fg                 │ filtergraph_is_simple                           │
+│                                                             │                                                   │                    │                                                 │
+└─────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────┴────────────────────┴─────────────────────────────────────────────────┘
+                                                                                  Source: AVFrame *frame
+                                                                               Sink: configure_filtergraph
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                     ┃ Method                                          ┃ Parameter            ┃ Tracked                                        ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ fftools/ffplay.c#578                                         │ decoder_decode_frame                            │ d                    │ decoder_decode_frame                           │
+│                                                              │                                                 │                      │                                                │
+│ fftools/ffmpeg_filter.c#1886                                 │ cleanup_filtergraph                             │ fg                   │ cleanup_filtergraph                            │
+│                                                              │                                                 │                      │                                                │
+│ fftools/ffmpeg_filter.c#560                                  │ graph_parse                                     │ logctx               │ graph_parse                                    │
+│                                                              │                                                 │                      │                                                │
+│ fftools/ffmpeg_filter.c#1876                                 │ configure_input_filter                          │ fg                   │ configure_input_filter                         │
+│                                                              │                                                 │                      │                                                │
+└──────────────────────────────────────────────────────────────┴─────────────────────────────────────────────────┴──────────────────────┴────────────────────────────────────────────────┘
+                                                                                    Source: Decoder *d
+                                                                               Sink: configure_filtergraph
+```
+
+### More queries to try
+
+```
+atom.method(".*Thread.*").callIn.argument.isIdentifier.df(atom.method(".*init.*").parameter).t
+```
