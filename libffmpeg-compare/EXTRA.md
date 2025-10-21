@@ -273,3 +273,102 @@
     "sreg_interactions": []
 }
 ```
+
+`JxlEncoderInitFrameHeader` from ffmpeg.exe
+
+```
+"0x143ddd300::JxlEncoderInitFrameHeader": {
+  "name": "JxlEncoderInitFrameHeader",
+  "address": "0x143ddd300",
+  "assembly": "movdqu xmm0, xmmword ptr [rip + 54382232]\nmovups xmmword ptr [rcx + 12], xmm0\npxor xmm0, xmm0\nmov qword ptr [rcx], 0\nmov dword ptr [rcx + 8], 0\nmov dword ptr [rcx + 44], 0\nmov dword ptr [rcx + 48], 0\nmov dword ptr [rcx + 52], 0\nmovups xmmword ptr [rcx + 28], xmm0\nret",
+  "assembly_hash": "1c687ecdd3eebffcde5db17045eb757f399f137305579bc5c09685f11f1663f6",
+  "instruction_hash": "79884587f8aefa16f40f0055705b93e82ae51433e30ae73af56ea614d3983fcc",
+  "instruction_count": 10,
+  "instruction_metrics": {
+      "call_count": 0,
+      "conditional_jump_count": 0,
+      "xor_count": 0,
+      "shift_count": 0,
+      "arith_count": 0,
+      "ret_count": 1,
+      "jump_count": 0,
+      "simd_fpu_count": 0,
+      "unique_regs_read_count": 2,
+      "unique_regs_written_count": 2
+  },
+  "direct_calls": [],
+  "has_indirect_call": false,
+  "has_system_call": false,
+  "has_security_feature": false,
+  "has_crypto_call": true,
+  "has_gpu_call": false,
+  "has_loop": false,
+  "regs_read": [
+      "rax",
+      "rsp"
+  ],
+  "regs_written": [
+      "rcx",
+      "rsp"
+  ],
+  "used_simd_reg_types": [],
+  "instructions_with_registers": [
+      {
+          "regs_read": [],
+          "regs_written": []
+      },
+      {
+          "regs_read": [],
+          "regs_written": []
+      },
+      {
+          "regs_read": [],
+          "regs_written": []
+      },
+      {
+          "regs_read": [],
+          "regs_written": [
+              "rcx"
+          ]
+      },
+      {
+          "regs_read": [],
+          "regs_written": [
+              "rcx"
+          ]
+      },
+      {
+          "regs_read": [],
+          "regs_written": [
+              "rcx"
+          ]
+      },
+      {
+          "regs_read": [],
+          "regs_written": [
+              "rcx"
+          ]
+      },
+      {
+          "regs_read": [],
+          "regs_written": [
+              "rcx"
+          ]
+      },
+      {
+          "regs_read": [],
+          "regs_written": []
+      },
+      {
+          "regs_read": [
+              "rax",
+              "rsp"
+          ],
+          "regs_written": [
+              "rsp"
+          ]
+      }
+  ],
+  "function_type": ""
+}
+```
