@@ -540,42 +540,122 @@ From ffmpeg-metadata.json (aarch64-apple)
 
 ## YARA rules
 
-### Rule 1: Detect Potential C2 Indicators
+### Rule: Detect obfuscation using xor count
 
 ```yara
-rule Blint_C2_Syscall_Crypto {
+rule Blint_Potential_Obfuscation_HighXor
+{
     meta:
-        description = "Detects binaries with functions containing both syscalls and crypto, potential C2"
+        description = "Detects functions that may be using obfuscation techniques by having an unusually high number of XOR instructions."
         author = "Team AppThreat"
-        date = "2025-10-19"
-        reference = "Based on blint disassembled_functions metadata"
-
+        date = "2025-10-18"
     condition:
-        any function_metadata in blint_disassembled_functions : (
-            function_metadata.has_system_call == true and
-            function_metadata.has_crypto_call == true
+        for any func in (blint.disassembled_functions):
+            func.instruction_metrics.xor_count > 5 and func.instruction_count > 10
+}
+```
+
+### Rule: Malware evasion with indirect and syscall
+
+```yara
+rule Blint_Malware_Evasion_IndirectAndSyscalls
+{
+    meta:
+        description = "Identifies functions that use both indirect calls and system calls, a common pattern in malware for evasion and stealth."
+        author = "Team AppThreat"
+        date = "2025-10-18"
+    condition:
+        for any func in (blint.disassembled_functions):
+            func.has_indirect_call and func.has_system_call
+}
+```
+
+### Rule: Windows suspicious calls
+
+```yara
+rule Blint_Windows_API_SuspiciousCalls
+{
+    meta:
+        description = "Finds functions that directly call a list of suspicious or high-risk Windows APIs, often used for process injection, memory allocation, and file manipulation."
+        author = "Team AppThreat"
+        date = "2025-10-18"
+    condition:
+        for any func in (blint.disassembled_functions):
+            any of ("VirtualAlloc*", "CreateProcess*", "WriteFile", "SetWindowsHookEx", "CreateRemoteThread") in func.direct_calls
+}
+```
+
+### Rule: Potential buffer overflow
+
+```yara
+rule Blint_Potential_BufferOverflow_Strcpy
+{
+    meta:
+        description = "Detects potential buffer overflow vulnerabilities by finding functions that call known unsafe string functions like 'strcpy'. This rule combines symbol table data with disassembly."
+        author = "Team AppThreat"
+        date = "2025-10-18"
+    condition:
+        any sym in (blint.symtab_symbols) where (
+            sym.name contains "strcpy" or
+            sym.name contains "strcat" or
+            sym.name contains "gets"
+        ) and (
+            any func in (blint.disassembled_functions) where (
+                func.address == sym.address and
+                func.function_type != "PLT_Thunk"
+            )
         )
 }
 ```
 
-### Rule 2: Detect High Entropy Assembly Blocks
+### Rule: Potential crypto mining
 
 ```yara
-rule Blint_High_Entropy_Assembly {
+rule Blint_Crypto_Operation_Monitoring
+{
     meta:
-        description = "Detects functions with high conditional jumps and register usage, potential obfuscation/crypto"
+        description = "Flags functions that contain cryptographic instruction patterns, which could indicate ransomware, packers, or legitimate crypto libraries."
         author = "Team AppThreat"
-        date = "2025-10-19"
-        reference = "Based on blint disassembled_functions instruction_metrics"
+        date = "2025-10-18"
     condition:
-        any function_metadata in blint_disassembled_functions : (
-            function_metadata.instruction_metrics.conditional_jump_count > 50 and
-            function_metadata.instruction_metrics.unique_regs_read_count > 20
-        )
+        for any func in (blint.disassembled_functions):
+            func.has_crypto_call
 }
 ```
 
-### Rule 3: Detect suspicious dotnet API
+### Rule: Apple silicon security feature usage
+
+```yara
+rule Blint_AppleSilicon_HighSecurityFeatures
+{
+    meta:
+        description = "Identifies functions on Apple Silicon that interact with proprietary high-security hardware features like SPRR, PAC, or GXF. Useful for security research on macOS/iOS."
+        author = "Team AppThreat"
+        date = "2025-10-18"
+    condition:
+        for any func in (blint.disassembled_functions):
+            any of ("SPRR_CONTROL", "PAC_KEYS", "GXF_CONTROL") in func.sreg_interactions
+}
+```
+
+### Rule: Leaf functions to triage based on register usage
+
+```
+rule Blint_RegisterUsage_AnomalousPattern
+{
+    meta:
+        description = "Detects functions with an unusual register usage pattern, such as reading from a register used for arguments (rdi) without writing to it."
+        author = "Team AppThreat"
+        date = "2025-10-18"
+    condition:
+        for any func in (blint.disassembled_functions):
+            "rdi" in func.regs_read and
+            "rdi" not in func.regs_written and
+            func.instruction_metrics.call_count == 0
+}
+```
+
+### Rule: Detect suspicious dotnet API
 
 ```
 rule DotNet_Suspicious_API_Usage
@@ -605,7 +685,7 @@ rule DotNet_Suspicious_API_Usage
 }
 ```
 
-### Rule 4: Detect dotnet anti-analysis techniques
+### Rule: Detect dotnet anti-analysis techniques
 
 ```
 rule DotNet_Anti_Analysis_Techniques
