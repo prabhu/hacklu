@@ -538,6 +538,96 @@ From ffmpeg-metadata.json (aarch64-apple)
 }
 ```
 
+## YARA rules
+
+### Rule 1: Detect Potential C2 Indicators
+
+```yara
+rule Blint_C2_Syscall_Crypto {
+    meta:
+        description = "Detects binaries with functions containing both syscalls and crypto, potential C2"
+        author = "Team AppThreat"
+        date = "2025-10-19"
+        reference = "Based on blint disassembled_functions metadata"
+
+    condition:
+        any function_metadata in blint_disassembled_functions : (
+            function_metadata.has_system_call == true and
+            function_metadata.has_crypto_call == true
+        )
+}
+```
+
+### Rule 2: Detect High Entropy Assembly Blocks
+
+```yara
+rule Blint_High_Entropy_Assembly {
+    meta:
+        description = "Detects functions with high conditional jumps and register usage, potential obfuscation/crypto"
+        author = "Team AppThreat"
+        date = "2025-10-19"
+        reference = "Based on blint disassembled_functions instruction_metrics"
+    condition:
+        any function_metadata in blint_disassembled_functions : (
+            function_metadata.instruction_metrics.conditional_jump_count > 50 and
+            function_metadata.instruction_metrics.unique_regs_read_count > 20
+        )
+}
+```
+
+### Rule 3: Detect suspicious dotnet API
+
+```
+rule DotNet_Suspicious_API_Usage
+{
+    meta:
+        description = "Detects usage of suspicious APIs in .NET assemblies"
+        author = "Team AppThreat"
+        reference = "Dosai JSON Analysis"
+        date = "2025-10-18"
+
+    strings:
+        $process_start = /"CalledMethod":\s*"System\.Diagnostics\.Process\.Start"/
+        $process_create = /"CalledMethod":\s*"System\.Diagnostics\.Process\.Create"/
+        $file_write = /"CalledMethod":\s*"System\.IO\.File\.WriteAllText"/
+        $file_read = /"CalledMethod":\s*"System\.IO\.File\.ReadAllText"/
+        $file_delete = /"CalledMethod":\s*"System\.IO\.File\.Delete"/
+        $registry_key = /"CalledMethod":\s*"Microsoft\.Win32\.Registry\.Key"/
+        $web_request = /"CalledMethod":\s*"System\.Net\.WebRequest\.Create"/
+        $socket_connect = /"CalledMethod":\s*"System\.Net\.Sockets\.Socket\.Connect"/
+        $crypto_encrypt = /"CalledMethod":\s*"System\.Security\.Cryptography\.SymmetricAlgorithm\.CreateEncryptor"/
+        $crypto_decrypt = /"CalledMethod":\s*"System\.Security\.Cryptography\.SymmetricAlgorithm\.CreateDecryptor"/
+        $reflection_load = /"CalledMethod":\s*"System\.Reflection\.Assembly\.LoadFrom"/
+        $reflection_create = /"CalledMethod":\s*"System\.Activator\.CreateInstance"/
+
+    condition:
+        any of them
+}
+```
+
+### Rule 4: Detect dotnet anti-analysis techniques
+
+```
+rule DotNet_Anti_Analysis_Techniques
+{
+    meta:
+        description = "Detects anti-analysis techniques in .NET assemblies"
+        author = "Team AppThreat"
+        reference = "Dosai JSON Analysis"
+        date = "2025-10-18"
+
+    strings:
+        $debugger_check = /"CalledMethod":\s*"System\.Diagnostics\.Debugger\.IsAttached"/
+        $debugger_break = /"CalledMethod":\s*"System\.Diagnostics\.Debugger\.Break"/
+        $vm_check = /"CalledMethod":\s*"System\.Management\.ManagementObjectSearcher"/
+        $timing_check = /"CalledMethod":\s*"System\.Diagnostics\.Stopwatch\.GetTimestamp"/
+        $sandbox_check = /"CalledMethod":\s*"System\.Windows\.Forms\.Screen\.AllScreens"/
+
+    condition:
+        any of them
+}
+```
+
 ## Interactive source analysis with chennai
 
 Download chennai [distribution](https://github.com/AppThreat/chen/releases/tag/v2.5.5) or container [image](https://github.com/AppThreat/chen?tab=readme-ov-file#interactive-console).
