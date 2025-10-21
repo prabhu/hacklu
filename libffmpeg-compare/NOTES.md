@@ -87,7 +87,7 @@ bl #977392
 
 NOTE: Help improve [blint](https://github.com/owasp-dep-scan/blint/pulls) to resolve and track this call under [direct_calls](https://github.com/owasp-dep-scan/blint/blob/main/docs/DISASSEMBLE.md)!
 
-From ffmpeg-metadata.json
+From ffmpeg-metadata.json (aarch64-apple)
 
 ```
 "0x100e5b9a4::_av_bprint_append_data": {
@@ -99,12 +99,12 @@ From ffmpeg-metadata.json
     "instruction_count": 46,
     "instruction_metrics": {
         "call_count": 1,
-        "conditional_jump_count": 0,
+        "conditional_jump_count": 1, // <----
         "xor_count": 0,
         "shift_count": 0,
         "arith_count": 5,
         "ret_count": 1,
-        "jump_count": 0,
+        "jump_count": 1, // <----
         "simd_fpu_count": 0,
         "unique_regs_read_count": 20,
         "unique_regs_written_count": 23
@@ -117,51 +117,51 @@ From ffmpeg-metadata.json
     "has_gpu_call": false,
     "has_loop": false,
     "regs_read": [
-        "w24",
-        "x19",
-        "w20",
-        "wzr",
-        "sp",
         "x10",
-        "w9",
-        "x30",
-        "x21",
-        "x2",
         "x28",
+        "x19",
+        "w2",
+        "x30",
         "w8",
-        "w22",
-        "x9",
-        "x24",
+        "w25",
         "x0",
         "w28",
         "x1",
-        "w2",
-        "w25"
+        "w22",
+        "x21",
+        "x9",
+        "w9",
+        "x24",
+        "w24",
+        "sp",
+        "w20",
+        "x2",
+        "wzr"
     ],
     "regs_written": [
-        "w24",
-        "x19",
-        "x23",
-        "x1",
-        "x26",
-        "x10",
-        "w9",
-        "x30",
-        "x20",
-        "x21",
         "x8",
-        "x27",
-        "x28",
-        "w8",
-        "x9",
+        "x10",
         "x25",
-        "x24",
+        "x27",
         "x29",
+        "x28",
+        "x19",
+        "x30",
+        "w2",
+        "w8",
+        "x20",
+        "w25",
         "x0",
         "w28",
+        "x1",
+        "x23",
+        "x21",
         "x22",
-        "w2",
-        "w25"
+        "x9",
+        "w9",
+        "x24",
+        "w24",
+        "x26"
     ],
     "used_simd_reg_types": [],
     "instructions_with_registers": [
@@ -170,8 +170,8 @@ From ffmpeg-metadata.json
                 "sp"
             ],
             "regs_written": [
-                "x28",
-                "x27"
+                "x27",
+                "x28"
             ]
         },
         {
@@ -179,8 +179,8 @@ From ffmpeg-metadata.json
                 "sp"
             ],
             "regs_written": [
-                "x26",
-                "x25"
+                "x25",
+                "x26"
             ]
         },
         {
@@ -188,8 +188,8 @@ From ffmpeg-metadata.json
                 "sp"
             ],
             "regs_written": [
-                "x23",
-                "x24"
+                "x24",
+                "x23"
             ]
         },
         {
@@ -206,8 +206,8 @@ From ffmpeg-metadata.json
                 "sp"
             ],
             "regs_written": [
-                "x20",
-                "x19"
+                "x19",
+                "x20"
             ]
         },
         {
@@ -254,8 +254,8 @@ From ffmpeg-metadata.json
         },
         {
             "regs_read": [
-                "w24",
-                "w28"
+                "w28",
+                "w24"
             ],
             "regs_written": [
                 "w8"
@@ -299,8 +299,8 @@ From ffmpeg-metadata.json
         },
         {
             "regs_read": [
-                "w24",
-                "w22"
+                "w22",
+                "w24"
             ],
             "regs_written": []
         },
@@ -342,8 +342,8 @@ From ffmpeg-metadata.json
         },
         {
             "regs_read": [
-                "w8",
-                "x9"
+                "x9",
+                "w8"
             ],
             "regs_written": [
                 "x0"
@@ -450,15 +450,15 @@ From ffmpeg-metadata.json
         },
         {
             "regs_read": [
-                "w9",
-                "w8"
+                "w8",
+                "w9"
             ],
             "regs_written": []
         },
         {
             "regs_read": [
-                "w9",
-                "w8"
+                "w8",
+                "w9"
             ],
             "regs_written": [
                 "w8"
@@ -466,8 +466,8 @@ From ffmpeg-metadata.json
         },
         {
             "regs_read": [
-                "wzr",
-                "x10"
+                "x10",
+                "wzr"
             ],
             "regs_written": []
         },
@@ -485,8 +485,8 @@ From ffmpeg-metadata.json
                 "sp"
             ],
             "regs_written": [
-                "x20",
-                "x19"
+                "x19",
+                "x20"
             ]
         },
         {
@@ -503,8 +503,8 @@ From ffmpeg-metadata.json
                 "sp"
             ],
             "regs_written": [
-                "x23",
-                "x24"
+                "x24",
+                "x23"
             ]
         },
         {
@@ -512,8 +512,8 @@ From ffmpeg-metadata.json
                 "sp"
             ],
             "regs_written": [
-                "x26",
-                "x25"
+                "x25",
+                "x26"
             ]
         },
         {
@@ -521,8 +521,8 @@ From ffmpeg-metadata.json
                 "sp"
             ],
             "regs_written": [
-                "x28",
-                "x27"
+                "x27",
+                "x28"
             ]
         },
         {
@@ -532,8 +532,9 @@ From ffmpeg-metadata.json
             "regs_written": []
         }
     ],
-    "function_type": "",
-    "proprietary_instructions": []
+    "function_type": "Has_Conditional_Jumps", // <----
+    "proprietary_instructions": [],
+    "sreg_interactions": []
 }
 ```
 
