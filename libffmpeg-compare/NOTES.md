@@ -936,6 +936,51 @@ chennai> atom.method("realloc").callIn.argument.df(atom.method("av_bprint_append
 ```
 
 ```
+chennai> atom.tag("event").identifier.df(atom.tag("parse").parameter).t
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                ┃ Method                                           ┃ Parameter               ┃ Tracked                                         ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/whip.c#513                                  │ parse_codec                                      │ s                       │ parse_codec                                     │
+│                                                         │ Tags: parse                                      │                         │                                                 │
+│ libavformat/whip.c#596                                  │ generate_sdp_offer                               │ s                       │ generate_sdp_offer                              │
+│                                                         │                                                  │                         │                                                 │
+│ libavformat/whip.c#744                                  │ exchange_sdp                                     │ s                       │ exchange_sdp                                    │
+│                                                         │                                                  │                         │                                                 │
+│ libavformat/whip.c#863                                  │ parse_answer                                     │ s                       │ parse_answer                                    │
+│                                                         │ Tags: parse                                      │                         │                                                 │
+│ libavformat/whip.c#1210                                 │ udp_connect                                      │ s                       │ udp_connect                                     │
+│                                                         │                                                  │                         │                                                 │
+│ libavformat/whip.c#1248                                 │ ice_dtls_handshake                               │ s                       │ ice_dtls_handshake                              │
+│                                                         │                                                  │                         │                                                 │
+│ libavformat/whip.c#972                                  │ ice_create_request                               │ s                       │ ice_create_request                              │
+│                                                         │                                                  │                         │                                                 │
+│ libavformat/avio.c#365                                  │ ffurl_open_whitelist                             │ whitelist               │ ffurl_open_whitelist                            │
+│                                                         │                                                  │                         │                                                 │
+│ libavformat/whip.c#377                                  │ dtls_initialize                                  │ s                       │ dtls_initialize                                 │
+│                                                         │                                                  │                         │                                                 │
+│ libavformat/url.h#145                                   │ ffurl_open_whitelist                             │ blacklist               │ ffurl_open_whitelist                            │
+│                                                         │                                                  │                         │                                                 │
+└─────────────────────────────────────────────────────────┴──────────────────────────────────────────────────┴─────────────────────────┴─────────────────────────────────────────────────┘
+                                                                                Source: AVFormatContext *s
+                                                                                    Source Tags: parse
+                                                                                 Sink: ice_dtls_handshake
+                                                                                     Sink Tags: event
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                     ┃ Method                                        ┃ Parameter                ┃ Tracked                                      ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/wavdec.c#186                                     │ wav_parse_fmt_tag                             │ st                       │ wav_parse_fmt_tag                            │
+│                                                              │ Tags: parse                                   │                          │                                              │
+│ libavformat/wavdec.c#205                                     │ wav_parse_xma2_tag                            │ st                       │ wav_parse_xma2_tag                           │
+│                                                              │ Tags: parse                                   │                          │                                              │
+└──────────────────────────────────────────────────────────────┴───────────────────────────────────────────────┴──────────────────────────┴──────────────────────────────────────────────┘
+                                                                                   Source: AVStream *st
+                                                                                    Source Tags: parse
+                                                                                 Sink: wav_parse_fmt_tag
+                                                                                     Sink Tags: event
+```
+
+```
 chennai> atom.method("cleanup.*").callIn.argument.isIdentifier.df(atom.method(".*decode.*").parameter).t
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ Location                                                    ┃ Method                                            ┃ Parameter          ┃ Tracked                                         ┃
@@ -990,8 +1035,230 @@ chennai> atom.method("cleanup.*").callIn.argument.isIdentifier.df(atom.method(".
                                                                                Sink: configure_filtergraph
 ```
 
+```
+chennai> atom.method(".*whisper.*").callIn.argument.df(atom.tag("parse").parameter).t
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                                          ┃ Method                             ┃ Parameter                  ┃ Tracked                          ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavcodec/dolby_e.c#955                                                          │ parse_audio                        │ s1                         │ parse_audio                      │
+│                                                                                   │ Tags: parse                        │                            │                                  │
+│ libavfilter/vf_colorspace.c#727                                                   │ filter_frame                       │ link                       │ filter_frame                     │
+│                                                                                   │                                    │                            │                                  │
+│ libavfilter/af_whisper.c#159                                                      │ uninit                             │ ctx                        │ uninit                           │
+│                                                                                   │                                    │                            │                                  │
+└───────────────────────────────────────────────────────────────────────────────────┴────────────────────────────────────┴────────────────────────────┴──────────────────────────────────┘
+                                                                               Source: DBEDecodeContext *s1
+                                                                                    Source Tags: parse
+                                                                                       Sink: uninit
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                            ┃ Method                                     ┃ Parameter               ┃ Tracked                                   ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavcodec/dolby_e.c#955                                            │ parse_audio                                │ s1                      │ parse_audio                               │
+│                                                                     │ Tags: parse                                │                         │                                           │
+│ libavfilter/af_whisper.c#287                                        │ filter_frame                               │ inlink                  │ filter_frame                              │
+│                                                                     │                                            │                         │                                           │
+│ libavfilter/af_whisper.c#185                                        │ run_transcription                          │ ctx                     │ run_transcription                         │
+│                                                                     │                                            │                         │                                           │
+└─────────────────────────────────────────────────────────────────────┴────────────────────────────────────────────┴─────────────────────────┴───────────────────────────────────────────┘
+                                                                               Source: DBEDecodeContext *s1
+                                                                                    Source Tags: parse
+                                                                                 Sink: run_transcription
+```
+
+```
+chennai> atom.method(".*decode.*").callIn.argument.df(atom.method(".*parse.*").parameter).t
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                      ┃ Method                                                   ┃ Parameter         ┃ Tracked                                                 ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/utils.c#636                       │ ff_parse_opts_from_query_string                          │ str               │ ff_parse_opts_from_query_string                         │
+│                                               │ Tags: parse                                              │                   │                                                         │
+│ /usr/include/string.h#293                     │ strcspn                                                  │ __s               │ strcspn                                                 │
+│                                               │                                                          │                   │                                                         │
+│ libavformat/utils.c#626                       │ find_opt                                                 │ name              │ find_opt                                                │
+│                                               │                                                          │                   │                                                         │
+└───────────────────────────────────────────────┴──────────────────────────────────────────────────────────┴───────────────────┴─────────────────────────────────────────────────────────┘
+                                                                                 Source: const char *str
+                                                                                    Source Tags: parse
+                                                                                      Sink: find_opt
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                        ┃ Method                                                  ┃ Parameter         ┃ Tracked                                                ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/utils.c#636                         │ ff_parse_opts_from_query_string                         │ str               │ ff_parse_opts_from_query_string                        │
+│                                                 │ Tags: parse                                             │                   │                                                        │
+│ libavformat/urldecode.c#99                      │ ff_urldecode_len                                        │ url               │ ff_urldecode_len                                       │
+│                                                 │                                                         │                   │                                                        │
+└─────────────────────────────────────────────────┴─────────────────────────────────────────────────────────┴───────────────────┴────────────────────────────────────────────────────────┘
+                                                                                 Source: const char *str
+                                                                                    Source Tags: parse
+                                                                          Sink: ff_parse_opts_from_query_string
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                              ┃ Method                                             ┃ Parameter             ┃ Tracked                                           ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/rtpdec.c#589                              │ ff_rtp_parse_set_crypto                            │ params                │ ff_rtp_parse_set_crypto                           │
+│                                                       │ Tags: parse                                        │                       │                                                   │
+│ libavformat/srtp.c#67                                 │ ff_srtp_set_crypto                                 │ params                │ ff_srtp_set_crypto                                │
+│                                                       │                                                    │                       │                                                   │
+└───────────────────────────────────────────────────────┴────────────────────────────────────────────────────┴───────────────────────┴───────────────────────────────────────────────────┘
+                                                                                Source: const char *params
+                                                                                    Source Tags: parse
+                                                                                 Sink: ff_srtp_set_crypto
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                ┃ Method                                          ┃ Parameter                 ┃ Tracked                                        ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/rdt.c#414                                   │ rdt_parse_sdp_line                              │ line                      │ rdt_parse_sdp_line                             │
+│                                                         │ Tags: parse                                     │                           │                                                │
+│ libavformat/rdt.c#396                                   │ rdt_parse_b64buf                                │ p                         │ rdt_parse_b64buf                               │
+│                                                         │ Tags: parse                                     │                           │                                                │
+└─────────────────────────────────────────────────────────┴─────────────────────────────────────────────────┴───────────────────────────┴────────────────────────────────────────────────┘
+                                                                                 Source: const char *line
+                                                                                    Source Tags: parse
+                                                                                  Sink: rdt_parse_b64buf
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                  ┃ Method                                             ┃ Parameter          ┃ Tracked                                          ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/oggparsevorbis.c#92                           │ vorbis_parse_single_comment                        │ size               │ vorbis_parse_single_comment                      │
+│                                                           │ Tags: parse                                        │                    │                                                  │
+│ /usr/include/string.h#107                                 │ memchr                                             │ __n                │ memchr                                           │
+│                                                           │                                                    │                    │                                                  │
+└───────────────────────────────────────────────────────────┴────────────────────────────────────────────────────┴────────────────────┴──────────────────────────────────────────────────┘
+                                                                                  Source: uint32_t size
+                                                                                    Source Tags: parse
+                                                                            Sink: vorbis_parse_single_comment
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                           ┃ Method                                                ┃ Parameter          ┃ Tracked                                              ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/mccdec.c#211                           │ mcc_parse_time_code                                   │ tc                 │ mcc_parse_time_code                                  │
+│                                                    │ Tags: parse                                           │                    │                                                      │
+│ libavcodec/smpte_436m.h#199                        │ av_smpte_291m_anc_8bit_decode                         │ payload            │ av_smpte_291m_anc_8bit_decode                        │
+│                                                    │                                                       │                    │                                                      │
+│ libavcodec/bytestream.h#148                        │ bytestream2_init_writer                               │ buf                │ bytestream2_init_writer                              │
+│                                                    │                                                       │                    │                                                      │
+│ libavcodec/bytestream.h#147                        │ bytestream2_init_writer                               │                    │ RET                                                  │
+│                                                    │                                                       │                    │                                                      │
+│ libavcodec/bytestream.h#197                        │ bytestream2_tell_p                                    │ p                  │ bytestream2_tell_p                                   │
+│                                                    │                                                       │                    │                                                      │
+└────────────────────────────────────────────────────┴───────────────────────────────────────────────────────┴────────────────────┴──────────────────────────────────────────────────────┘
+                                                                                 Source: MCCTimecode *tc
+                                                                                    Source Tags: parse
+                                                                                  Sink: mcc_read_header
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                ┃ Method                                            ┃ Parameter              ┃ Tracked                                         ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/mccdec.c#171                                │ parse_time_code_rate                              │ s                      │ parse_time_code_rate                            │
+│                                                         │ Tags: parse                                       │                        │                                                 │
+│ libavformat/mccdec.c#141                                │ time_tracker_set_time                             │ log_ctx                │ time_tracker_set_time                           │
+│                                                         │                                                   │                        │                                                 │
+└─────────────────────────────────────────────────────────┴───────────────────────────────────────────────────┴────────────────────────┴─────────────────────────────────────────────────┘
+                                                                                Source: AVFormatContext *s
+                                                                                    Source Tags: parse
+                                                                                  Sink: mcc_read_header
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                           ┃ Method                                                 ┃ Parameter        ┃ Tracked                                               ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/matroskadec.c#2504                     │ mkv_parse_block_addition_mappings                      │ s                │ mkv_parse_block_addition_mappings                     │
+│                                                    │ Tags: parse                                            │                  │                                                       │
+│ libavformat/matroskadec.c#2043                     │ matroska_parse_content_encodings                       │ track            │ matroska_parse_content_encodings                      │
+│                                                    │ Tags: parse                                            │                  │                                                       │
+└────────────────────────────────────────────────────┴────────────────────────────────────────────────────────┴──────────────────┴───────────────────────────────────────────────────────┘
+                                                                                Source: AVFormatContext *s
+                                                                                    Source Tags: parse
+                                                                          Sink: matroska_parse_content_encodings
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                            ┃ Method                                                 ┃ Parameter        ┃ Tracked                                              ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/matroskadec.c#2044                      │ matroska_parse_content_encodings                       │ logctx           │ matroska_parse_content_encodings                     │
+│                                                     │ Tags: parse                                            │                  │                                                      │
+│ libavformat/matroskadec.c#2830                      │ mka_parse_audio                                        │ matroska         │ mka_parse_audio                                      │
+│                                                     │ Tags: parse                                            │                  │                                                      │
+└─────────────────────────────────────────────────────┴────────────────────────────────────────────────────────┴──────────────────┴──────────────────────────────────────────────────────┘
+                                                                                   Source: void *logctx
+                                                                                    Source Tags: parse
+                                                                          Sink: matroska_parse_content_encodings
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                      ┃ Method                                          ┃ Parameter            ┃ Tracked                                       ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/matroskadec.c#3588                                │ matroska_parse_rm_audio                         │ track                │ matroska_parse_rm_audio                       │
+│                                                               │ Tags: parse                                     │                      │                                               │
+│ libavformat/matroskadec.c#3771                                │ matroska_parse_webvtt                           │ track                │ matroska_parse_webvtt                         │
+│                                                               │ Tags: parse                                     │                      │                                               │
+│ libavformat/matroskadec.c#3973                                │ matroska_parse_frame                            │ track                │ matroska_parse_frame                          │
+│                                                               │ Tags: parse                                     │                      │                                               │
+└───────────────────────────────────────────────────────────────┴─────────────────────────────────────────────────┴──────────────────────┴───────────────────────────────────────────────┘
+                                                                               Source: MatroskaTrack *track
+                                                                                    Source Tags: parse
+                                                                                Sink: matroska_parse_block
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                     ┃ Method                                        ┃ Parameter                 ┃ Tracked                                     ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/matroskadec.c#2022                               │ matroska_parse_cues                           │ matroska                  │ matroska_parse_cues                         │
+│                                                              │ Tags: parse                                   │                           │                                             │
+│ libavformat/matroskadec.c#845                                │ matroska_reset_status                         │ matroska                  │ matroska_reset_status                       │
+│                                                              │                                               │                           │                                             │
+│ libavformat/matroskadec.c#3486                               │ matroska_clear_queue                          │ matroska                  │ matroska_clear_queue                        │
+│                                                              │                                               │                           │                                             │
+│ libavformat/matroskadec.c#4245                               │ matroska_parse_cluster                        │ matroska                  │ matroska_parse_cluster                      │
+│                                                              │ Tags: parse                                   │                           │                                             │
+│ libavformat/matroskadec.c#1153                               │ ebml_parse                                    │ data                      │ ebml_parse                                  │
+│                                                              │                                               │                           │                                             │
+│ libavformat/matroskadec.c#1259                               │ ebml_parse                                    │ data                      │ ebml_parse                                  │
+│                                                              │                                               │                           │                                             │
+│ libavformat/matroskadec.c#4094                               │ matroska_parse_block                          │ cluster_time              │ matroska_parse_block                        │
+│                                                              │ Tags: parse                                   │                           │                                             │
+└──────────────────────────────────────────────────────────────┴───────────────────────────────────────────────┴───────────────────────────┴─────────────────────────────────────────────┘
+                                                                          Source: MatroskaDemuxContext *matroska
+                                                                                    Source Tags: parse
+                                                                                Sink: matroska_parse_block
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                      ┃ Method                                          ┃ Parameter            ┃ Tracked                                       ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/matroskadec.c#4245                                │ matroska_parse_cluster                          │ matroska             │ matroska_parse_cluster                        │
+│                                                               │ Tags: parse                                     │                      │                                               │
+│ libavformat/matroskadec.c#866                                 │ matroska_resync                                 │ last_pos             │ matroska_resync                               │
+│                                                               │                                                 │                      │                                               │
+│ libavformat/matroskadec.c#3459                                │ matroska_deliver_packet                         │ matroska             │ matroska_deliver_packet                       │
+│                                                               │                                                 │                      │                                               │
+└───────────────────────────────────────────────────────────────┴─────────────────────────────────────────────────┴──────────────────────┴───────────────────────────────────────────────┘
+                                                                          Source: MatroskaDemuxContext *matroska
+                                                                                    Source Tags: parse
+                                                                                Sink: matroska_parse_block
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Location                                                       ┃ Method                                         ┃ Parameter            ┃ Tracked                                       ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ libavformat/matroskadec.c#4245                                 │ matroska_parse_cluster                         │ matroska             │ matroska_parse_cluster                        │
+│                                                                │ Tags: parse                                    │                      │                                               │
+│ libavformat/matroskadec.c#913                                  │ ebml_read_num                                  │ matroska             │ ebml_read_num                                 │
+│                                                                │                                                │                      │                                               │
+│ libavformat/matroskadec.c#978                                  │ ebml_read_length                               │ matroska             │ ebml_read_length                              │
+│                                                                │                                                │                      │                                               │
+└────────────────────────────────────────────────────────────────┴────────────────────────────────────────────────┴──────────────────────┴───────────────────────────────────────────────┘
+                                                                          Source: MatroskaDemuxContext *matroska
+                                                                                    Source Tags: parse
+                                                                                Sink: matroska_parse_block
+```
+
 ### More queries to try
 
 ```
 atom.method(".*Thread.*").callIn.argument.isIdentifier.df(atom.method(".*init.*").parameter).t
+```
+
+```
+atom.method(".*gpu.*").callIn.argument.df(atom.method(".*init.*").parameter).t
+```
+
+```
+atom.method(".*gpu.*").callIn.argument.df(atom.method(".*init.*").parameter).passesNot(_.collectAll[Expression].inCall.name("d3d12va_encode_set_profile")).t
 ```
