@@ -1,0 +1,1 @@
+Analyzed Release: https://github.com/Radarr/Radarr/releases/tag/v5.28.0.10274
