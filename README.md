@@ -10,3 +10,5 @@ This repo contains the slices and metadata json files in (.zip and .tar.gz forma
 - [dosai](https://github.com/owasp-dep-scan/dosai)
 
 Begin by reading the notes [here](./libffmpeg-compare/NOTES.md).
+
+WARNING: All metadata were generated for untrusted repos. If in doubt, do not use a Windows machine to clone this repo!

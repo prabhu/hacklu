@@ -1,1 +1,3 @@
+WARNING: Untrusted repo!!!
+
 Analyzed Release: https://github.com/Sonarr/Sonarr/releases/tag/v4.0.15.2941
