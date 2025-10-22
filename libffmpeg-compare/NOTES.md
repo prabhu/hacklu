@@ -1266,3 +1266,11 @@ atom.method(".*gpu.*").callIn.argument.df(atom.method(".*init.*").parameter).t
 ```
 atom.method(".*gpu.*").callIn.argument.df(atom.method(".*init.*").parameter).passesNot(_.collectAll[Expression].inCall.name("d3d12va_encode_set_profile")).t
 ```
+
+```
+atom.method(".*http.*").callIn.argument.df(atom.method(".*stream.*").parameter).t
+```
+
+```
+atom.method(".*write.*").callIn.argument.df(atom.method(".*http.*").parameter).t
+```
