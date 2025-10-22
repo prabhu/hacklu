@@ -1252,6 +1252,10 @@ chennai> atom.method(".*decode.*").callIn.argument.df(atom.method(".*parse.*").p
 ### More queries to try
 
 ```
+atom.method(".*(encrypt|decrypt).*").caller.caller.caller.caller.name.l
+```
+
+```
 atom.method(".*Thread.*").callIn.argument.isIdentifier.df(atom.method(".*init.*").parameter).t
 ```
 
